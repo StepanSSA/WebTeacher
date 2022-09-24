@@ -1,0 +1,41 @@
+﻿@model WebApplicationTeacher.Domains.StudentsHomework
+
+@{
+    ViewData["Title"] = "AddHomework";
+}
+
+<h1>AddHomework</h1>
+
+<h4>StudentsHomework</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="LoadFile" asp-controller="AboutCourse" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <input hidden asp-for="studentId" value="@Model.studentId" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input hidden asp-for="filePath" value="@Model.filePath" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input hidden asp-for="courseId" value="@Model.courseId" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input hidden asp-for="videoId" value="@Model.videoId" class="form-control" />
+            </div>
+            <h3>Выберите файл для загрузки</h3>
+            <input type="file" name="uploadedFile" accept=".txt, .docx" /><br>
+
+            <div class="form-group">
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
+                <a role="button" class="btn btn-primary" asp-action="Index">К списку курсов</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+    
+

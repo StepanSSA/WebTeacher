@@ -1,0 +1,32 @@
+﻿@using Newtonsoft.Json;
+@{
+    ViewData["Title"] = "Таблица оценок";
+}
+<h1> @ViewData["Title"]</h1>
+<hr />
+<div ng-app="app" ng-controller="RatingTableController" ng-init="data = @JsonConvert.SerializeObject(ViewBag.data)">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Курс</th>
+                <th scope="col">Имя студента</th>
+                <th scope="col">Оценка/Дата</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="d in data">
+                <th scope="row">{{$index+1}}</th>
+                <td>{{d.courseName}}</td>
+                <td>{{d.studentName}}</td>
+                <td ng-repeat="(key, value) in d.gradesDate">{{key}}/{{value}} </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script src="~/angular/angular.min.js"></script>
+<script type="text/javascript">
+    angular.module('app', []);
+</script>
+<script src="~/AngularControllers/RatingTableController.js"></script>

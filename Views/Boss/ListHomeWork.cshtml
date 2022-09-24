@@ -1,0 +1,74 @@
+﻿@model List<WebApplicationTeacher.Models.HomeworkModel>
+@using Newtonsoft.Json;
+@{
+    ViewData["Title"] = "Список домашних работ";
+}
+
+
+<h1>@ViewData["Title"]</h1>
+<div ng-app="app" ng-controller="HomeWorkController" ng-init="data = @JsonConvert.SerializeObject(ViewBag.data)">
+    <div class="container">
+        <form>
+            <div class="form-group">
+                <a role="button" href="@Url.Content("/Boss/ListHomeWorkPost/")?JsonHomework={{data}}"
+                   class="btn btn-success">
+                    Сохранить
+                </a>
+            </div>
+            <div class="form-row">
+                <div>
+                    <label>Сортировка</label>
+                    <select ng-model="filterBy" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <option value="studentName" selected>По имени</option>
+                        <option value="Mark">По оценке</option>
+                        <option value="courseName">По курсу</option>
+                    </select>
+                </div>
+                <div>
+                    <label>По Возрастанию</label>
+                    <input type="checkbox" ng-model="reverseBool"/>
+                </div>
+            </div>
+            <hr /> 
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Имя студента</th>
+                        <th scope="col">Название курса</th>
+                        <th scope="col">Домашнее задание</th>
+                        <th scope="col">Оценка</th>
+                    </tr>
+                </thead>
+                <tbody >
+                    <tr ng-repeat="d in data | orderBy:filterBy:reverseBool">
+                        <td>{{d.studentName}}</td>
+                        <td>{{d.courseName}}</td>
+                        <td>
+                            <a role="button"
+                               href="@Url.Content("/Boss/Download/")?Path={{d.filePath}}"
+                               class="form-control  btn btn-header">
+                                Скачать
+                            </a>
+                        </td>
+                        <td>
+                            <select ng-model="d.Mark" class="form-select">
+                                <option selected>{{d.Mark}}</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+        </form>
+    </div>
+</div>
+
+<script src="~/angular/angular.min.js"></script>
+<script type="text/javascript">
+    angular.module('app', []);
+</script>
+<script src="~/AngularControllers/HomeWorkController.js"></script>

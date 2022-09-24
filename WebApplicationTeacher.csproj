@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>aspnet-WebApplicationTeacher-D9079F57-3A3F-4FDA-9388-953260B1DEC9</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20220627125935_Init.cs" />
+    <Compile Remove="Migrations\20220627125935_Init.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\AngularControllers\RatingTableController.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AngularJS.Core" Version="1.8.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.26" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.26" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.26" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.26" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="3.1.26" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="3.1.26" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.26">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.26" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.26" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.26">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.26" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore" Version="3.1.5" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+    <Folder Include="wwwroot\Files\" />
+  </ItemGroup>
+
+</Project>

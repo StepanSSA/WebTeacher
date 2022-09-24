@@ -1,0 +1,70 @@
+﻿@model WebApplicationTeacher.Domains.Courses;
+<link rel="stylesheet" href="~/Content/Site.css" />
+
+
+    <div ng-app="app" ng-controller="CourseController" class="container blockOne" style="padding: 40px;">
+        <div id="beginner" class="col">
+            <h1>@Model.Name</h1>
+        </div>
+        <div id="beginner" class="col">
+            <span>@Model.Description</span>
+        </div>
+        <div id="beginner" class="col">
+            <span>@Model.Size</span>
+        </div>
+        <div id="beginner" class="col">
+            @if (User.IsInRole(Model.Name) || User.IsInRole("boss"))
+            {
+            
+                @for (int i = 0; i < ViewBag.Videos.Count; i++)
+                {
+                    <div style="border-block: medium; background-color: rgba(226,222,218,1); margin: 50px; padding: 20px ">
+                        <h3>@ViewBag.Videos[i].videoName</h3>
+                        <span>
+                            @ViewBag.Videos[i].description
+                        </span>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" width="560" height="315" src="@ViewBag.Videos[i].videoPath" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                            </iframe>
+                        </div>
+                        <a role="button" class="btn btn-header"
+                           asp-controller="AboutCourse"
+                           asp-action="AddHomework"
+                           asp-route-id="@ViewBag.Videos[i].id">
+                            Загрузить домашнее задание
+                        </a>
+                    </div>
+                }
+            
+            }
+            else if (User.Identity.IsAuthenticated)
+            {
+                <div id="beginner" class="col">
+                    <span>Цена курса @Model.Price рублей </span>
+                </div>
+                <a role="button" class="btn btn-header"
+                   asp-controller="AboutCourse"
+                   asp-action="CourseBuying"
+                   asp-route-id="@Model.Id">
+                    Купить
+                </a>
+            }
+            else
+            {
+                <a role="button" class="btn btn-header"
+                   asp-controller="Account"
+                   asp-action="Register">
+                    Зарегестрироваться
+                </a>
+            }
+
+        </div>
+    </div>
+
+
+<script src="~/angular/angular.min.js"></script>
+<script type="text/javascript">
+    angular.module('app', []);
+</script>
+<script src="~/AngularControllers/CourseController.js"></script>
+

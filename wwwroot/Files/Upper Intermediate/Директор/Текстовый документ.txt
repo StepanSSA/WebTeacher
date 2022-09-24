@@ -1,0 +1,24 @@
+<div class="form-row" ng-repeat="d in data">
+                {{$index}}
+                <div class="col">
+                    <label class="control-label">Имя студента</label>
+                    <input value="{{d.studentName}}" readonly class="form-control" />
+                </div>
+                <div class="col">
+                    <label class="control-label">Название курса</label>
+                    <input value="{{d.courseName}}" readonly class="form-control" />
+                </div>
+                <div class="col">
+                    <label class="control-label">Домашнее задание</label>
+                    <a role="button"
+                       href="@Url.Content("/Boss/Download/")?Path={{d.filePath}}"
+                       class="form-control  btn btn-header">
+                        Скачать
+                    </a>
+                </div>
+                <div class="col">
+                    <label class="control-label">Оценка</label>
+                    <input ng-model="{{d.Mark}}" class="form-control" />
+                    <span ng-model="{{d.Mark}}" class="text-danger"></span>
+                </div>
+            </div>
